@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js" integrity="sha256-yz7K02nILYEeRDwEfzu/1zI9SpBKod/nLYMTFh7vszs=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: rgb(246, 248, 250);
+            font-family: 'Fira Sans', sans-serif;;
+        }
+        .wrapper{
+            width: 950px;
+            height: 530px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .top{
+            width: 800px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .bottom{
+            background-color: white;
+            width: 800px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+        }
+        .container-left{
+            border-radius: 20px;
+            background-color: white;
+            width: 250px;
+            height: 210px;
+            position: relative;
+            transition: box-shadow 1s linear, transform 0.5s linear;
+        }
+        .container-middle{
+            padding-top: 20px;
+            border-radius: 20px 0 20px 20px;
+            background-color: white;
+            width: 250px;
+            height: 210px;
+            overflow-y: scroll;
+            position: relative;
+            transition: box-shadow 1s linear, transform 0.5s linear;
+        }
+
+
+        /* width */
+            ::-webkit-scrollbar {
+            width: 5px;
+            }
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+            background: rgb(170, 170, 170); 
+            border-radius: 10px;
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+            background: gray; 
+            }
+        .place{
+            padding: 10px;
+            width: 100%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        .place p{
+            padding: 5px;
+        }
+        .container-left:hover,.container-middle:hover{
+            box-shadow: 0 0 100px gray;
+            transform: scale(1.1,1.1);
+        }
+        table th,td{
+            text-align: center;
+            font-size: 12px;
+            padding-left: 5px;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .gg-battery{
+            box-sizing: border-box;
+            position: relative;
+            display: block;
+            width: 30px;
+            height: 15px;
+            transform: scale(var(--ggs,1));
+            border: 2px solid;
+            border-radius: 3px;
+            margin-left: -3px
+        }
+        .gg-battery::after,
+        .gg-battery::before{
+            content: "";
+            display: block;
+            box-sizing: border-box;
+            position: absolute;
+            height: 8px;
+            background: currentColor;
+            top: 2px
+        }
+        .gg-battery::before {
+            right: -5px;
+            border-radius: 3px;
+            width: 2px
+        }
+        .gg-battery p{
+            position: absolute;
+            font-size: 10px;
+            font-weight: bold;
+            right: -40px;
+        }
+        .gg-battery::after{
+            left: 1px;
+        }
+        .gg-battery::after {
+            width: 38%;
+            background-color: green;
+        }
+        .gg-battery[name = "1%"]::after{
+            width: 1%;
+            background-color: red;
+        }
+        .gg-battery[name = "4%"]::after{
+            width: 4%;
+            background-color: red;
+        }
+        .gg-battery[name = "8%"]::after{
+            width: 8%;
+            background-color: yellow;
+        }
+        .gg-battery[name = "12%"]::after{
+            width: 12%;
+            background-color: yellow;
+        }
+        .gg-battery[name = "16%"]::after{
+            width: 16%;
+            background-color: blue;
+        }
+        .gg-battery[name = "20%"]::after{
+            width: 20%;
+            background-color: blue;
+        }
+        .gg-battery[name = "24%"]::after{
+            width: 24%;
+            background-color: violet;
+        }
+        .gg-battery[name = "30%"]::after{
+            width: 30%;
+            background-color: violet;
+        }
+        .gg-battery[name = "35%"]::after{
+            width: 35%;
+            background-color: green;
+        }
+        .container-right{
+            width: 250px;
+            height: 210px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: box-shadow 1s linear, transform 0.5s linear;
+        }
+        .wallet{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            border-radius: 10px;
+            width: 250px;
+            height: 90px;
+            background-color: white;
+        }
+        .count{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            border-radius: 10px;
+            width: 250px;
+            height: 90px;
+            background-color: white;
+        }
+        .wallet ion-icon{
+            font-size: 30px;
+            padding: 10px;
+            border-radius: 100rem;
+            color: rgba(33, 16, 125, 0.8);
+            background-color:rgba(33, 16, 125, 0.1);
+        }
+        .count ion-icon{
+            font-size: 30px;
+            padding: 10px;
+            border-radius: 100rem;
+            color: rgba(25, 178, 132, 1);
+            background-color:rgba(25, 178, 132, 0.2);
+        }
+        .container-right h3{
+            color: #0e153a;
+        }
+        .container-right h3 p {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+           <div class="top">
+                <div class="container-left">   
+                    <div class="place">
+                        <p>Số Ca Nhiễm Covid</p>
+                        <p>TP.HCM</p>
+                        <ion-icon name="caret-down-outline"></ion-icon>
+                    </div>    
+                    <canvas id="ca-nhiem" width="400" height="400"></canvas>
+                </div>
+                <div class="container-middle">
+                    <table>
+                        <tr>
+                            <th>Tỉnh Thành</th>
+                            <th>Tiêm Mũi 1</th>
+                            <th>Tiêm Đủ Liều</th>
+                        </tr>
+                        <tr>
+                            <td>TP.HCM</td>
+                            <td>
+                               <div class="gg-battery" name="35%">
+                                   <p>38.89%</p>
+                               </div> 
+                            </td>                       
+                            <td>
+                                <div class="gg-battery" name="1%">
+                                    <p>1.12%</p>
+                                </div> 
+                            </td>                       
+                        </tr>
+                        <tr>
+                            <td>Bình Dương</td>
+                            <td>
+                               <div class="gg-battery" name="8%">
+                                   <p>7,8%</p>
+                               </div> 
+                            </td>                       
+                            <td>
+                                <div class="gg-battery" name="1%">
+                                    <p>0.72%</p>
+                                </div> 
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td>Đồng Nai</td>
+                            <td>
+                               <div class="gg-battery" name="4%">
+                                   <p>4,35%</p>
+                               </div> 
+                            </td>                       
+                            <td>
+                                <div class="gg-battery" name="1%">
+                                    <p>0.65%</p>
+                                </div> 
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td>Long An</td>
+                            <td>
+                               <div class="gg-battery" name="16%">
+                                   <p>16%</p>
+                               </div> 
+                            </td>                       
+                            <td>
+                                <div class="gg-battery" name="1%">
+                                    <p>1.26%</p>
+                                </div> 
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td>Tiền Giang</td>
+                            <td>
+                               <div class="gg-battery" name="4%">
+                                   <p>5,34%</p>
+                               </div> 
+                            </td>                       
+                            <td>
+                                <div class="gg-battery" name="1%">
+                                    <p>0.66%</p>
+                                </div> 
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td>Khánh Hòa</td>
+                            <td>
+                               <div class="gg-battery" name="4%">
+                                   <p>5,34%</p>
+                               </div> 
+                            </td>                       
+                            <td>
+                                <div class="gg-battery" name="1%">
+                                    <p>1.15%</p>
+                                </div> 
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td>Đắk Lăk</td>
+                            <td>
+                               <div class="gg-battery" name="4%">
+                                   <p>3.34%</p>
+                               </div> 
+                            </td>                       
+                            <td>
+                                <div class="gg-battery" name="1%">
+                                    <p>0.88%</p>
+                                </div> 
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td>Hà Nội</td>
+                            <td>
+                               <div class="gg-battery" name="16%">
+                                   <p>17.3%</p>
+                               </div> 
+                            </td>                       
+                            <td>
+                                <div class="gg-battery" name="1%">
+                                    <p>1.1%</p>
+                                </div> 
+                            </td>  
+                            <tr>
+                                <td>Bắc Ninh</td>
+                                <td>
+                                   <div class="gg-battery" name="24%">
+                                       <p>22.02%</p>
+                                   </div> 
+                                </td>                       
+                                <td>
+                                    <div class="gg-battery" name="4%">
+                                        <p>3.41%</p>
+                                    </div> 
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td>Đà Nẵng</td>
+                                <td>
+                                   <div class="gg-battery" name="4%">
+                                       <p>5.7%</p>
+                                   </div> 
+                                </td>                       
+                                <td>
+                                    <div class="gg-battery" name="1%">
+                                        <p>0.7%</p>
+                                    </div> 
+                                </td>  
+                            </tr>
+                        </tr>
+                    </table>
+                </div>
+                <div class="container-right">
+                    <div class="wallet">
+                        <ion-icon name="wallet"></ion-icon>
+                        <h3>8.236 Billion VND
+                            <p>quỹ vaccine covid</p>
+                        </h3>
+                    </div>
+                    <div class="count">
+                        <ion-icon name="person"></ion-icon>
+                        <h3>482.123 tham gia
+                            <p>Tổ chức, cá nhân ủng hộ</p>
+                        </h3>
+                    </div>
+                </div>
+           </div>
+           <div class="bottom">
+            <canvas id="myChart" width="800px" height="220px">
+    
+            </canvas>
+           </div>
+     </div>
+    </div>
+    <script>
+        var x = 2.318;
+        var y = 136.675;
+      var ctx = document.getElementById('ca-nhiem').getContext('2d');
+      var canhiem = new Chart(ctx, {
+        type: 'doughnut',
+           data: {
+              labels: ['Ca nhiễm','Tổng Số'],
+              datasets: [{
+                  label: '# of Votes',
+                  data: [x,y],
+                  backgroundColor: [
+                     'rgba(25, 178, 132, 1)',
+                      'rgba(33, 16, 125, 0.8)',
+                  ],
+                  borderColor: [
+                      'rgba(255, 255, 255, 1)',
+                      'rgba(255, 255, 255, 1)',
+                  ],
+                  borderWidth: 3,
+              }]
+          },
+          options: {
+            plugins: {
+            legend: {
+                display: true,
+                position:'right',
+                labels: {
+                    color:'#000',
+                    usePointStyle: true,
+                    boxWidth: 6
+                }
+            }
+        }
+    }
+      });
+      
+      </script>
+      <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['03/08', '04/08', '05/08', '06/08', '07/08', '08/08','09/08','10/08','11/08','12/08'],
+            datasets: [{
+                label: 'Số ca tử vong',
+                data: [228, 22, 366, 263, 205,147,387,360,346,0],
+                backgroundColor: [
+    
+                ],
+                borderColor: [
+    
+                ],
+                borderWidth: 1,
+                tension:0.4,
+            },
+            {
+                label: 'Bình phục',
+                data: [3866, 3501,3780,4292,4305,4860,4423,4428,4806,0],
+                backgroundColor: [
+                    '#00fff0',
+    
+                ],
+                borderColor: [
+                    '#00fff0',
+    
+                ],
+                borderWidth: 1,
+                tension:0.4,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+        </script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

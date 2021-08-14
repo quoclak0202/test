@@ -1,0 +1,179 @@
+footer{
+    width: 100%;
+    height: 700px;
+    background-color: #F0F2F5;
+}
+
+
+
+
+
+/* phan team member  */
+#our-team-member{
+    margin: 0 auto;
+    max-width: 1170px;
+    padding: 50px;
+    height: 700px;
+    background-color: white;
+}
+#our-team-member h1{
+    color: #21107D;
+}
+#our-team-member img{
+    width: 350px;
+    height: 500px;
+}
+.container-member{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.member1 , .member2 {
+    width: 350px;
+    height: 500px;
+    position: relative;
+}
+.shadow{
+    width: 100%;
+    height: 30%;
+    opacity: 0;
+    background: rgb(255,255,255);
+background: linear-gradient(180deg, rgba(255,255,255,0.19681375968356096) 0%, rgba(0,0,0,0.5) 100%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 0.2s linear;
+}
+.main-info{
+    width: 60%;
+    height: 15%;
+    display: flex;
+   align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: yellow;
+    border-radius: 20px;
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+}
+.main-info h1 {
+    font-size: 20px;
+}
+.main-info h2 {
+    font-size: 12px;
+    color: black;
+    opacity: 0.7;
+}
+.container-member :hover img{
+    transform: scale(1.1,1.1);
+    transition: 0.2s linear;
+}
+.container-member :hover .shadow {
+    opacity: 1;
+}
+.box-img {
+    overflow: hidden;
+}
+.box-img ul {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    width: 10%;
+    height: 80%;
+    list-style: none;
+}
+.box-img ion-icon {
+    font-size: 20px;
+}
+.box-img ul {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#if1,#if2,#if3,#if4 {
+    transform: translate(50px,0);
+}
+#if1 {
+    transition: 0.5s linear 0.2s;
+}
+#if2 {
+    transition: 0.5s linear 0.4s;
+}
+#if3 {
+    transition: 0.5s linear 0.6s;
+}
+#if4{
+    transition: 0.5s linear 0.8s;
+}
+.box-img:hover #if1 {
+    transform: translate(0,0);
+}
+.box-img:hover #if2 {
+    transform: translate(0,0);
+}
+.box-img:hover #if3 {
+    transform: translate(0,0);
+}
+.box-img:hover #if4 {
+    transform: translate(0,0);
+}
+
+
+
+
+
+
+.background-footer{
+    width: 100%;
+    height: 700px;
+    background-color: #21107D;
+    position: relative;
+}
+.logo{
+    padding: 12px;
+}
+.information{
+    width: 100%;
+    height: 400px;
+    border: dashed wheat;
+    border-width: 0 0 1px 0;
+    position: absolute;
+    bottom: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.information a:hover li
+{
+    color: aqua;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+.information h3{
+    color: white;
+    padding: 12px;
+}
+.information li {
+    padding: 10px;
+    color: lightgrey;
+    list-style: none;
+    font-size: 12px;
+}
+.information h4, h5{
+    font-size: 12px;
+    color: lightgrey;
+}
+.cpr{
+    width: 100%;
+    position: absolute;
+    bottom: 5%;
+    display: flex;
+    justify-content: space-around;
+}
+.cpr ion-icon{
+    font-size: 15px;
+    color: red;
+}

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-97/variables.less';
+        @import 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/mixins.less';
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        a{
+            text-decoration: none;
+            font-family: "Poppins",sans-serif; 
+        }
+        body{
+            width: 950px;
+            height: 530px;
+            overflow: hidden;
+            background-color: rgb(249, 244, 239);
+            font-family: 'proxima-nova-soft', sans-serif;
+            font-size: 14px;
+        }
+        img{
+            width: 100%;
+        }
+        /* width */
+            ::-webkit-scrollbar {
+            width: 5px;
+            }
+
+            /* Track */
+            ::-webkit-scrollbar-track {
+            border-radius: 10px;
+            padding: 10px;
+            }
+            
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+            background: rgb(249, 244, 239); 
+            border-radius: 10px;
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+            background: gray; 
+            }
+        .wrapper{
+            width: 950px;
+            height: 530px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        #colums1{
+            overflow-y:scroll;
+            overflow-x: hidden;
+            width: 280px;
+            height: 450px;
+            opacity: 0;
+            transform: translate(-50px,0);
+            transition: 1s linear;
+        }
+        #colums2{
+            overflow-x: hidden;
+            overflow-y:scroll;
+            width: 280px;
+            height: 450px;
+            opacity: 0;
+            transform: translate(0,50px);
+            transition: 1s linear;
+        }
+        #colums3{
+            overflow-y:scroll;
+            width: 280px;
+            height: 450px;
+            opacity: 0;
+            transform: translate(50px,0);
+            transition: 1s linear;
+        }
+        /* phan noi dung cua bao */
+        .container:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1,1.1);
+        }
+        .content{
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .content h1{
+            font-size: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-decoration: line-through;
+            text-decoration-color: rgba(255, 89, 89,0.4);
+            text-decoration-thickness: 16px;
+        }
+        .content .content-summary{
+            padding-bottom:5px;
+            padding-left:10px;
+            margin-left: 5px;
+            font-size: 14px;
+            border-left: 1px solid gray;
+        }
+        .content-img{
+            position: relative;
+        }
+        .content-img-NEWS{
+            position: absolute;
+            bottom: 0;
+            background-color: #E74C3C;
+            padding: 5px;
+            font-weight: bold;
+            color: white;
+        }
+        .content-img img{
+            filter: grayscale(100%);
+            transition: filter 1s linear, transform 0.5s linear;
+        }
+        /* ngay gio va doc them */
+        .container-dnl{
+            width: 100%;
+            height: 40px;
+            border-top: 0.5px solid gray;
+            border-bottom: 0.5px solid gray;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .container-dnl ion-icon{
+            font-size: 16px;
+        }
+        .link {
+            padding: 8px;
+            background:
+            linear-gradient(#ffff00 0 0) top left,
+            linear-gradient(#0000ff 0 0) bottom right;
+            background-size: 0% 0%;
+            background-repeat: no-repeat;
+            background-blend-mode: darken;
+            transition: .5s;
+        }
+        .link:hover {
+            color:#fff;
+            background-size: calc(100% - 6px) calc(100% - 6px);
+        }
+        /* phan thoi tiet */
+        .container-weather{
+            border-radius: 20px;
+            width: 100%;
+            height: 300px;
+            background: url("https://images.unsplash.com/photo-1559963110-71b394e7494d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80") ;
+	        -webkit-box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);
+	        box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);;
+        }
+        .cover-background{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+            background: rgb(34,193,195);
+background: linear-gradient(180deg, rgba(34,193,195,0.7) 0%, rgba(253,187,45,0.7) 100%);
+        }
+        .current-weather{
+            width: 80%;
+            height: 50%;
+            border-radius:20px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .next-weather{
+            border-radius: 20px;
+            width: 80%;
+            height: 40%;
+            background-color: rgba(34, 40, 49,0.5);
+            display: flex;
+        }
+        .current-weather h1,h3,h4,h5,h6,ion-icon{
+            color: white;
+        }
+        .current-weather .sun{
+            font-size: 70px;
+            --ionicon-stroke-width: 40px;
+            animation: rotate 5s linear infinite;
+        }
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .current-weather h1{
+            font-size: 40px;
+        }
+        .current-weather h3{
+            font-size: 12px;
+        }
+        .current-weather h4{
+            font-size: 12px;
+        }
+        .current-weather h5{
+            font-size: 10px;
+            opacity: 0.8;
+        }
+        .current-weather h6{
+            font-size: 10px;
+            opacity: 0.8;
+        }
+        .left ion-icon{
+            font-size: 10px;
+        }
+        .left ,.right {
+            width: auto;
+            height: 130px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+        .next-weather-select{
+            width: 25%;
+            height: 100%;
+            transition: 0.5s linear;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .next-weather-select ion-icon{
+            font-size: 50px;
+            color: white;
+        }
+        .next-weather-select h1{
+            color: white;
+            font-size: 20px;
+        }
+        .next-weather-select h2{
+            color: white;
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body onload="onload()">
+    <div class="wrapper">
+        <div id="colums1">
+            <div class="container">
+                <div class="content">
+                    <div class="content-img">
+                        <img src="https://giadinh.mediacdn.vn/zoom/480_300/296230595582509056/2021/8/12/photo1628767669253-1628767669373430626532.jpeg" alt="">
+                        <div class="content-img-NEWS">NEWS</div>
+                    </div>
+                    <h1>Bản tin COVID-19 tối 12/8: Hà Nội, TP HCM và 40 tỉnh thêm 9.667 ca nhiễm mới một ngày</h1>
+                    <div class="content-summary" style="font-weight: bold;">Hệ thống Quốc gia quản lý ca bệnh COVID-19 trong 12 giờ qua ghi nhận 5.025 ca nhiễm mới, nâng tổng số ca nhiễm trong ngày ở nước ta lên 9.667, trong đó có 2.226 ca trong cộng đồng.</div>
+                    <div class="container-dnl">
+                        <div style="display: flex; align-items: center; font-size: 12px;">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                            Thứ năm, 12/08/2021 18:50
+                        </div>
+                        <a class="link" href="https://ncov.moh.gov.vn/vi/web/guest/-/6847426-6827" target="_blank">Đọc Thêm</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="content">
+                    <div class="content-img">
+                        <img src="https://giadinh.mediacdn.vn/zoom/480_300/296230595582509056/2021/8/12/photo1628767669253-1628767669373430626532.jpeg" alt="">
+                        <div class="content-img-NEWS">NEWS</div>
+                    </div>
+                    <h1>Bản tin COVID-19 tối 12/8: Hà Nội, TP HCM và 40 tỉnh thêm 9.667 ca nhiễm mới một ngày</h1>
+                    <div class="content-summary" style="font-weight: bold;">Hệ thống Quốc gia quản lý ca bệnh COVID-19 trong 12 giờ qua ghi nhận 5.025 ca nhiễm mới, nâng tổng số ca nhiễm trong ngày ở nước ta lên 9.667, trong đó có 2.226 ca trong cộng đồng.</div>
+                    <div class="container-dnl">
+                        <div style="display: flex; align-items: center; font-size: 12px;">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                            Thứ năm, 12/08/2021 18:50
+                        </div>
+                        <a class="link" href="https://ncov.moh.gov.vn/vi/web/guest/-/6847426-6827" target="_blank">Đọc Thêm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="colums2">
+            <div class="container">
+                <div class="content">
+                    <div class="content-img">
+                        <img src="https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2021/8/13/khu-vuc-cach-ly-16288350081552068573321.jpeg" alt="">
+                        <div class="content-img-NEWS">NEWS</div>
+                    </div>
+                    <h1>Bản tin COVID-19 trưa 13/8: Bộ Y tế thí điểm điều trị tại nhà; TP.HCM sẽ tiếp tục giãn cách theo Chỉ thị 16</h1>
+                    <div class="content-summary" style="font-weight: bold;">Từ 6h sáng -12h trưa ngày 13/8, Hà Nội có thêm 24 ca COVID-19; Bộ Y tế sẽ triển khai thí điểm điều trị bệnh nhân COVID- 19 tại nhà; Phó Bí thư Thường trực Thành uỷ TP Hồ Chí Minh cho biết sẽ tiếp tục giãn cách xã hội theo chỉ thị 16 sau 15/8.</div>
+                    <div class="container-dnl">
+                        <div style="display: flex; align-items: center; font-size: 12px;">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                            Thứ sáu, 13/08/2021, 13:33
+                        </div>
+                        <a class="link" href="https://ncov.moh.gov.vn/vi/web/guest/-/6847426-6827" target="_blank">Đọc Thêm</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="content">
+                    <div class="content-img">
+                        <img src="https://giadinh.mediacdn.vn/zoom/480_300/296230595582509056/2021/8/12/photo1628767669253-1628767669373430626532.jpeg" alt="">
+                        <div class="content-img-NEWS">NEWS</div>
+                    </div>
+                    <h1>Bản tin COVID-19 tối 12/8: Hà Nội, TP HCM và 40 tỉnh thêm 9.667 ca nhiễm mới một ngày</h1>
+                    <div class="content-summary" style="font-weight: bold;">Hệ thống Quốc gia quản lý ca bệnh COVID-19 trong 12 giờ qua ghi nhận 5.025 ca nhiễm mới, nâng tổng số ca nhiễm trong ngày ở nước ta lên 9.667, trong đó có 2.226 ca trong cộng đồng.</div>
+                    <div class="container-dnl">
+                        <div style="display: flex; align-items: center; font-size: 12px;">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                            Thứ năm, 12/08/2021 18:50
+                        </div>
+                        <a class="link" href="https://ncov.moh.gov.vn/vi/web/guest/-/6847426-6827" target="_blank">Đọc Thêm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="colums3">
+            <div class="container-weather">
+                <div class="cover-background">
+                    <div class="current-weather">
+                        <div class="left">
+                            <div>
+                                <h4>Hôm nay</h4>
+                            <h5>13 8 2021</h5>
+                            <h6><ion-icon name="location-outline"></ion-icon>Daklak,Lak</h6>
+                            </div>
+                            <ion-icon name="sunny-outline" class="sun"></ion-icon>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <h3>Precipitation: 13%</h3>
+                            <h3>Humidity: 92%</h3>
+                            <h3>Wind: 5 km/h</h3>
+                            </div>
+                            <h1>29°C</h1>
+                        </div>
+                    </div>
+                    <div class="next-weather">
+                        <div class="next-weather-select">
+                            <ion-icon name="sunny-outline"></ion-icon>
+                            <h2>Hôm nay</h2>
+                            <h1>29°C</h1>
+                        </div>
+                        <div class="next-weather-select">
+                            <ion-icon name="partly-sunny-outline"></ion-icon>
+                            <h2>T2</h2>
+                            <h1>25°C</h1>
+                        </div>
+                        <div class="next-weather-select">
+                            <ion-icon name="rainy"></ion-icon>
+                            <h2>T3</h2>
+                            <h1>19°C</h1>
+                        </div>
+                        <div class="next-weather-select">
+                            <ion-icon name="thunderstorm"></ion-icon>
+                            <h2>T3</h2>
+                            <h1>19°C</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script>
+          var col1 = document.getElementById("colums1");
+            var col2 = document.getElementById("colums2");
+            var col3 = document.getElementById("colums3");
+        function onload(){
+            col1.style.transform = "translate(0,0)"
+            col2.style.transform = "translate(0,0)"
+            col3.style.transform = "translate(0,0)"
+            col1.style.opacity = 1;
+            col2.style.opacity = 1;
+            col3.style.opacity = 1;
+        }
+    </script>
+</body>
+</html>

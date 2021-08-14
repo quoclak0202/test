@@ -1,0 +1,123 @@
+#section-3{
+    background-color: #DADADA;
+    width: 100%;
+    height: 730px;
+}
+.section-3-container {
+    margin: 0 auto;
+    max-width: 1170px;
+    height: 100%;
+    background-color:#DADADA;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#nav-2{
+    height: 600px;
+    width: 200px;
+    background-color: white;
+    border-radius: 30px 0 0 30px;
+    opacity: 1;
+    transform: translate(-100px,0);
+    transition: 1s linear;
+}
+.nav-2-logo{
+    width: 80%;
+    height: 100%;
+}
+.nav-2-logo-img{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin: auto;
+    border: solid gray;
+    border-width: 0 0 2px 0;
+} 
+#nav-2 ul {
+    background-color: white;
+    padding:12px;
+}
+#nav-2 li {
+    height: 58px;
+    padding: 12px;
+    list-style: none;
+    background-color:white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transition: 0.1s linear;
+}
+#nav-2 li ion-icon {
+    font-size: 24px;
+    font-weight: bold;
+    color: #5d646c;
+    margin-right: 12px;
+}
+#nav-2 li p {
+    font-weight: bold;
+    color: #5d646c;
+    margin-right: 20px;
+}
+#nav-2 ul a:hover li{
+    background-color:#EBEBEB;
+}
+.setting-icon{
+    transform: rotate(0);
+    transition: 2s linear;
+}
+.setting-dropdown{
+    position: relative;
+}
+#nav-2 .setting-dropdown:hover .setting-icon{
+    transform: rotate(180deg);
+}
+.screen{
+    width: 950px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#support-screen{
+    width: 950px;
+    height: 50px;
+    background-color: white;
+    border-radius: 0 30px 30px 0;
+    opacity: 1;
+    transform: translate(0px,-50px);
+    transition: 1s linear;
+}
+#main-screen{
+    width: 950px;
+    height: 530px;
+    background-color: white;
+    border-radius: 0px 30px 30px 0;
+    overflow: hidden;
+    opacity: 1;
+    transform: translate(200px,0px);
+    transition: 1s linear;
+}
+/* phan support screnn */
+#support-screen{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.date{
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.date ion-icon{
+    font-size: 20px;
+}
+#current-screen {
+    font-family: 'Roboto', sans-serif;
+}
+/* ho to js */
+.press-nav-2{
+    border: 2px solid black;
+}

@@ -1,0 +1,133 @@
+.banner{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+.banner-content{
+    padding-top: 70px;
+    width: 52%;
+}
+.banner-content-heading{
+    margin-bottom: 30px;
+}
+.banner-content h1{
+    font-size: 40px;
+    color: #02073E;
+}
+.banner-content h4{
+    font-family: 'Raleway', sans-serif;
+    width: 40%;
+    color: white;
+}
+#s1-heading1{
+    width: 0;
+    border-right: 3px solid;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: width 2s steps(27), border-color 0.1s linear 2s;
+}    
+#s1-heading2{
+    width: 0;
+    border-right: 3px solid;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: width 1.2s steps(19) 2s, border-color 0.1s linear 3.2s;
+  }
+#s1-heading3{
+    color: white;
+    width: 0;
+    border-right: 3px solid;
+    transition: width 0.5s steps(4) 3.2s, border-color 0.1s linear 3.8s;;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+#s1-heading4{
+    opacity: 0;
+    transition: 1s linear 3.8s;
+}
+#banner-content-link{
+    width: 370px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transform: translate(-80px,0);
+    opacity: 0;
+    transition: 1s linear 4.2s;
+}
+#banner-content-link .link-1{
+    margin-right: 20px;
+    box-sizing: content-box;
+    text-align: center;
+    padding: 10px;
+    width: 150px;
+    height: 30px;
+    border:2px solid white;
+    font-size: 18px;
+    color: white;
+    transition: 0.5s linear;
+}
+#banner-content-link .link-2{
+    color: white;
+    transition: 0.2s linear;
+}
+.banner-content-link-icon{
+    position: absolute;
+    top: 11px; 
+    left: 161.5px; 
+    animation: shield 10s infinite linear;
+}
+@keyframes shield{
+    0% {top:11px; left: -11px;}
+    38.3668903799% {top:11px; left:161.5px;}
+    50% {top:63px;left: 161.5px;}
+    88.3668903799% {top:63px;left: -11px;}
+    100% {top:11px; left:-11px;}
+}
+#banner-content-link .link-1:hover{
+    color: #ff304f;
+    border-radius: 20px;
+}
+#banner-content-link .link-2:hover{
+    margin-left: 10px;
+}
+.share-on{
+    margin-top: 30px;
+    width: 370px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#share-on-facebook{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#fc5c9c;
+    width: 200px;
+    height: 50px;
+    color: white;
+    opacity: 0;
+    transform: translate(50px,0);
+    transition: opacity 1s linear 3.9s, transform 1s linear 3.9s;
+}
+#share-on-twitter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #086972;
+    width: 200px;
+    height: 50px;
+    color: white;
+    margin-left: 150px;
+    opacity: 0;
+    transform: translate(-50px,0);
+    transition: 1s linear 3.9s;
+}
+.banner-div{    
+    padding-top: 40px;
+    padding-left: 50px;
+    width: 400px;
+    height: 600px;   
+}
